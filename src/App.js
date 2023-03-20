@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React  from 'react';
+import PropTypes from 'prop-types'
+import Button from "./Button";
+import Title from "./Title";
+class App extends  React.Component{
+    static childContextTypes = {
+        color : PropTypes.string,
+        handleChangeColor:PropTypes.func
+    };
+    constructor(){
+        super()
+        this.state={
+            color:'red'
+        }
+    }
+    handleChangeColor(color){
+        this.setState({
+            color:color
+        })
+    }
+    getChildContext(){
+        return{
+            color:this.state.color,
+            handleChangeColor:(color)=>this.handleChangeColor(color)
+        }
+    }
+    render(){
+        return(
+            <div>
+                <Title ></Title>
+                <Button ></Button>
+            </div>
+        )
+    }
 }
-
-export default App;
+export default  App; //导出组件
