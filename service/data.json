@@ -1,0 +1,24 @@
+{
+    "header" : "This is header",
+    "body" : {
+        "length" : "3",
+        "list" : [
+            {
+                "name" : "First man",
+                "value" : "100"
+            },
+            {
+                "name" : "Second man",
+                "value" : "200"
+            },
+            {
+                "name" : "Third man",
+                "value" : "300"
+            }
+        ]
+    },
+    "footer" : {
+        "date" : "8126538",
+        "value" : "This is footer"
+    }
+}
