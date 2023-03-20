@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './css/App.css';
+//import axios from 'axios';
+import fetchJsonp from 'fetch-jsonp'
+import Login from './login.js'
+import List from './list.js'
+//定义组件
+class News extends  React.Component{
+  //构造函数
+  constructor(props){
+    super(props);//表示继承
+    this.state={
+      value:'',
+      display1:'block',
+        display2:'none'
+    }
+  }
+    handleClick(display1,display2){
+        this.setState({
+            display1:display1,
+            display2:display2
+        })
+        this.text.lookList();
+    }
+  render(){
+    return(
+        <div>
+            <Login  handleClick={(display1,display2)=>this.handleClick(display1,display2)}></Login>
+            <List ref={(text)=>this.text=text} display2={this.state.display2} handleClick={(display1,display2)=>this.handleClick(display1,display2)}></List>
+        </div>
+    )
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  }
 }
+export default  News; //导出组件
 
-export default App;
+
