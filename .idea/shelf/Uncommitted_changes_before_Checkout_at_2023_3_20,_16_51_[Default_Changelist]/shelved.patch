@@ -1,0 +1,68 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"90431f69-675c-400a-9546-b71cc74dd1dc\" name=\"Default Changelist\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/.env\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/Button.js\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/Title.js\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/serviceWorker.js\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/package.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/package.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/App.css\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/App.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/App.js\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/App.test.js\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/index.css\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/index.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/index.js\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/logo.svg\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/reportWebVitals.js\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/setupTests.js\" beforeDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"context1\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2NGnJD8hRYPqFETZVLWxC6G5S9R\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\n    <property name=\"node.js.path.for.package.eslint\" value=\"project\" />\n    <property name=\"node.js.path.for.package.tslint\" value=\"project\" />\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$\" />\n      <recent name=\"$PROJECT_DIR$/src\" />\n    </key>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"90431f69-675c-400a-9546-b71cc74dd1dc\" name=\"Default Changelist\" comment=\"\" />\n      <created>1679299212891</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1679299212891</updated>\n      <workItem from=\"1679299214731\" duration=\"413000\" />\n      <workItem from=\"1679299646433\" duration=\"1894000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"[add]react_router3练习代码提交\">\n      <created>1679299408937</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1679299408937</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"[add]react_router4练习代码提交\">\n      <created>1679300668735</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1679300668735</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"[add]react_router5练习代码提交\">\n      <created>1679300912326</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1679300912326</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"[add]context1练习代码提交\">\n      <created>1679301267899</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1679301267899</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"5\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"[add]react_router3练习代码提交\" />\n    <MESSAGE value=\"[add]react_router4练习代码提交\" />\n    <MESSAGE value=\"[add]react_router5练习代码提交\" />\n    <MESSAGE value=\"[add]context1练习代码提交\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"[add]context1练习代码提交\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9beae39925a6a5bc9c45d5f879ee86f2d8913fab)
++++ b/.idea/workspace.xml	(date 1679302081326)
+@@ -1,21 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="90431f69-675c-400a-9546-b71cc74dd1dc" name="Default Changelist" comment="">
+-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Button.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Title.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/serviceWorker.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.js" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" />
+-    </list>
++    <list default="true" id="90431f69-675c-400a-9546-b71cc74dd1dc" name="Default Changelist" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -64,7 +50,7 @@
+       <option name="presentableId" value="Default" />
+       <updated>1679299212891</updated>
+       <workItem from="1679299214731" duration="413000" />
+-      <workItem from="1679299646433" duration="1894000" />
++      <workItem from="1679299646433" duration="2357000" />
+     </task>
+     <task id="LOCAL-00001" summary="[add]react_router3练习代码提交">
+       <created>1679299408937</created>
+@@ -94,7 +80,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1679301267899</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="[add]context2练习代码提交">
++      <created>1679301638676</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1679301638676</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -117,6 +110,7 @@
+     <MESSAGE value="[add]react_router4练习代码提交" />
+     <MESSAGE value="[add]react_router5练习代码提交" />
+     <MESSAGE value="[add]context1练习代码提交" />
+-    <option name="LAST_COMMIT_MESSAGE" value="[add]context1练习代码提交" />
++    <MESSAGE value="[add]context2练习代码提交" />
++    <option name="LAST_COMMIT_MESSAGE" value="[add]context2练习代码提交" />
+   </component>
+ </project>
+\ No newline at end of file
