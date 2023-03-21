@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { connect } from 'react-redux';
+import reducers from "./reducers"
+
+import List from "./List";
+
+class App1 extends React.Component{
+  render() {
+    return (
+       <List list={this.props.list}></List>
+    );
+  }
 }
+
+// const mapStateToProps = function(reducers) {
+//   return {
+//     list: reducers.userState.list
+//   };
+// }
+
+const App=connect(
+    state=>({
+      list:state.userReducer.list
+    })
+)(App1);
 
 export default App;
