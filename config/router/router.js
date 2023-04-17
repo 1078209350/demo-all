@@ -10,12 +10,12 @@ const routes = [
   },
   // {
   //   path: "/layout",
-  //   Component: Home,
-  //   key: 'home',
-  //   exact: true,
-  //   meta: {
-  //     title: "主页",
-  //   },
+  //   components: [
+  //     {
+  //       path: '/layout/config',
+  //       component: 'Layout',
+  //     },
+  //   ],
   // },
   {
     path: "/Header",

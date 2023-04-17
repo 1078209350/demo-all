@@ -33,7 +33,7 @@ class App extends Component {
         <Switch>
            {
             // eslint-disable-next-line no-shadow
-            this.state.routesNew.map(({path, Component, Components, exact = true}) => {
+            this.state.routesNew.map(({path, Component, components, exact = true}) => {
               return (
                   <Route
                       exact={exact}
@@ -42,9 +42,9 @@ class App extends Component {
                       // component={componentName}
                       render={props => {
                         // 判断当前得路由对象是否存在子路由
-                        if(Components){ // 存在路由嵌套    递归函数
+                        if(components){ // 存在路由嵌套    递归函数
                           // eslint-disable-next-line react/jsx-props-no-spreading
-                          return <Component {...props} routes={Components}/>;
+                          return <Component {...props} routes={components}/>;
                         }else{ // 不存在路由嵌套
                           // eslint-disable-next-line react/jsx-props-no-spreading
                           return <Component {...props}/>;
