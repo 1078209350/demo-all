@@ -328,7 +328,8 @@ module.exports = function (webpackEnv) {
         .map(ext => `.${ext}`)
         .filter(ext => useTypeScript || !ext.includes('ts')),
       alias: {
-        '@src': path.resolve(__dirname, '../src')
+        '@src': path.resolve(__dirname, '../src'),
+        '@public': path.resolve(__dirname, './public')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -599,6 +600,9 @@ module.exports = function (webpackEnv) {
         //     }],
         // },
       ],
+    },
+    devServer: {
+      hot: true
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.

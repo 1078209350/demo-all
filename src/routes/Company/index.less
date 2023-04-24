@@ -20,11 +20,35 @@
       display: flex;
       justify-content: space-between;
       .nav-item{
+        position: relative;
         width: 70px;
         height: 50px;
         line-height: 50px;
         text-align: center;
         cursor: pointer;
+        &::after{ /*伪类, 添加一个下划线, 但是不给宽度*/
+          content: '';
+          height: 2px;
+          background-color: white;
+          position:absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translate(-50%);
+        }
+        &:hover:after{ /*hover的时候给一个动画*/
+          animation-name: ani;
+          animation-duration:1s;
+          animation-fill-mode:forwards; /*动画停在最后100%时候的状态*/
+          animation-direction:alternate;
+        }
+        @keyframes ani{ /*这个动画的意思就是宽度从0-100*/
+          from{
+            width: 0;
+          }
+          to{
+            width: 50%;
+          }
+        }
         &:hover{
           opacity: 0.8;
         }

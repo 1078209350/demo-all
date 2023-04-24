@@ -2,6 +2,7 @@ import React from "react";
 // import {Button} from 'choerodon-ui/pro';
 // import classnames from 'classnames';
 import styles from './index.less';
+import mov from '../../../public/company/advert1.mov';
 
 class Company extends React.Component {
   render(){
@@ -22,6 +23,8 @@ class Company extends React.Component {
           </div>
         </div>
         <div className={styles.content}>
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video width="400" src={mov} type="video/mp4" height="320" controls autoPlay />
           <div className={styles.advert}>
             <span className={styles['advert-desc']}>产品中心</span>
             <img className={styles['advert-img']} src='https://sunnysmartlead.com/static/images/product.png' alt='' />
