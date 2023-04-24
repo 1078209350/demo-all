@@ -35,6 +35,15 @@ const routes = [
       title: "最主要的人",
     },
   },
+  {
+    path: "/company",
+    Component: "Company",
+    key: 'main',
+    exact: true,
+    meta: {
+      title: "公司网站",
+    },
+  },
 ];
 
 export default routes;
