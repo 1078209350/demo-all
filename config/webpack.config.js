@@ -329,7 +329,7 @@ module.exports = function (webpackEnv) {
         .filter(ext => useTypeScript || !ext.includes('ts')),
       alias: {
         '@src': path.resolve(__dirname, '../src'),
-        '@public': path.resolve(__dirname, './public')
+        '@public': path.resolve(__dirname, '../public')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
