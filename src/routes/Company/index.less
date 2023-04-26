@@ -94,26 +94,29 @@
           background-color:transparent;
         }
       }
-      .advert-bar{
-        width: 70%;
-        display: flex;
-        justify-content: space-between;
+
+      .advert-bar-item1, .advert-bar-item2, .advert-bar-item3{
+        width: 15%;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.3);
         position: absolute;
         top: 80%;
-        left: 50%;
-        transform: translate(-50%, 0%);
+        left: 20%;
         z-index: 199;
-        color: #FFFFFF;
-        .bar-item{
-          width: 25%;
-          height: 5px;
-          background: red;
+        &::after{
+          content: '';
+          display: block;
+          width: 0%;
+          height: 100%;
+          background-color: white;
           animation-name: bar-ani;
-          animation-duration:3s;
+          animation-duration:8s;
+
+          //animation-direction: alternate;
           animation-iteration-count:infinite;
           animation-fill-mode:forwards; /*动画停在最后100%时候的状态*/
-          animation-direction:normal;
         }
+
         @keyframes bar-ani{ /*这个动画的意思就是宽度从0-100*/
           from{
             width: 0;
@@ -123,6 +126,40 @@
           }
         }
       }
+
+
+      .advert-bar-item2{
+        left: 40%;
+        &::after{
+          animation-delay: 2s;
+        }
+      }
+
+      .advert-bar-item3{
+        left: 60%;
+        &::after{
+          animation-delay: 4s;
+        }
+      }
+
+      @keyframes bar-ani{ /*这个动画的意思就是宽度从0-100*/
+        0%{
+          width: 0;
+        }
+        25%{
+          width: 100%;
+        }
+        50%{
+          width: 0;
+        }
+        75%{
+          width: 0;
+        }
+        100%{
+          width: 0;
+        }
+      }
+
       .advert-img{
         width: 100%;
       }

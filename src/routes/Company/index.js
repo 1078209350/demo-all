@@ -70,11 +70,10 @@ class Company extends React.Component {
                 <button type='button' className={styles['desc-btn']} onClick={()=>{console.log(111111);}}>了解我们</button>
               </div>
             </div>
-            <div className={styles['advert-bar']}>
-              <div className={styles['bar-item']} />
-              <div className={styles['bar-item']} />
-              <div className={styles['bar-item']} />
-            </div>
+            <div className={styles['advert-bar-item1']} />
+            <div className={styles['advert-bar-item2']} />
+            <div className={styles['advert-bar-item3']} />
+
             <img className={styles['advert-img']} src={advert2} alt='' />
           </div>
           <div className={styles.advert} style={{visibility: advertOrder === 3? 'visible': 'hidden', zIndex: advertOrder === 3? 99: 0}} >
