@@ -72,7 +72,7 @@ module.exports = {
     'react/sort-comp': [0],
     'no-trailing-spaces': [2],
     semi: [2],
-    'no-unused-vars': [2],
+    'no-unused-vars': [1],
     'no-multi-spaces': [2],
     'key-spacing': [2],
     'no-underscore-dangle': [0],

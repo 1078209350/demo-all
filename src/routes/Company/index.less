@@ -1,7 +1,6 @@
 @import '../../../src/common/common.less';
 
 .container{
-  height: 1000px;
   .header{
     position: fixed;
     top: 0;
@@ -61,108 +60,145 @@
   .content{
     position: relative;
     height: 100%;
-    .advert{
-      position: absolute;
-      top: 0px;
-      .advert-desc{
-        display: flex;
+    .content-first{
+      .advert{
         position: absolute;
-        top: 30%;
-        left: 10%;
-        z-index: 199;
-        transform: translate(0%, -50%);
-        color: white;
-        .desc1{
-          font-size: 15px;
-          margin-bottom: 25px;
-        }
-        .desc2{
-          font-size: 42px;
-          margin-bottom: 25px;
-        }
-        .desc-btn{
-          display: inline-block;
-          font-size: 1em;
-          border: 1px solid #FFFFFF;
-          border-radius: 50px;
-          padding: 1em 1.5em;
-          font-weight: 400;
-          color: #FFFFFF;
-          margin: 1em 0;
-          transition: all 1s;
-          cursor: pointer;
-          background-color:transparent;
-        }
-      }
-
-      .advert-bar-item1, .advert-bar-item2, .advert-bar-item3{
-        width: 15%;
-        height: 5px;
-        background: rgba(255, 255, 255, 0.3);
-        position: absolute;
-        top: 80%;
-        left: 20%;
-        z-index: 199;
-        &::after{
-          content: '';
-          display: block;
-          width: 0%;
-          height: 100%;
-          background-color: white;
-          animation-name: bar-ani;
-          animation-duration:8s;
-
-          //animation-direction: alternate;
-          animation-iteration-count:infinite;
-          animation-fill-mode:forwards; /*动画停在最后100%时候的状态*/
-        }
-
-        @keyframes bar-ani{ /*这个动画的意思就是宽度从0-100*/
-          from{
-            width: 0;
+        top: 0px;
+        .advert-desc{
+          display: flex;
+          position: absolute;
+          top: 30%;
+          left: 10%;
+          z-index: 199;
+          transform: translate(0%, -50%);
+          color: white;
+          .desc1{
+            font-size: 15px;
+            margin-bottom: 25px;
           }
-          to{
-            width: 100%;
+          .desc2{
+            font-size: 42px;
+            margin-bottom: 25px;
+          }
+          .desc-btn{
+            display: inline-block;
+            font-size: 1em;
+            border: 1px solid #FFFFFF;
+            border-radius: 50px;
+            padding: 1em 1.5em;
+            font-weight: 400;
+            color: #FFFFFF;
+            margin: 1em 0;
+            transition: all 1s;
+            cursor: pointer;
+            background-color:transparent;
           }
         }
-      }
+
+        .advert-bar{
+          position: absolute;
+          z-index: 199;
+          width: 80%;
+          left: 10%;
+          top: 80%;
+          display: flex;
+          justify-content: space-between;
+          .advert-bar-item1, .advert-bar-item2, .advert-bar-item3{
+            width: 30%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+
+            .bar-item1, .bar-item2, .bar-item3{
+              display: block;
+              width: 0%;
+              height: 100%;
+              background-color: white;
+              animation-name: bar-ani;
+              animation-duration:9s;
+
+              //animation-direction: alternate;
+              animation-iteration-count:infinite;
+              animation-fill-mode:forwards; /*动画停在最后100%时候的状态*/
+            }
+
+            @keyframes bar-ani{ /*这个动画的意思就是宽度从0-100*/
+              from{
+                width: 0;
+              }
+              to{
+                width: 100%;
+              }
+            }
+          }
 
 
-      .advert-bar-item2{
-        left: 40%;
-        &::after{
-          animation-delay: 2s;
+          .advert-bar-item2{
+            .bar-item2{
+              animation-delay: 3s;
+              &:active{
+                background: red;
+              }
+            }
+
+          }
+          //
+          //.advert-bar-item2:active > .bar-item2{
+          //  width: 33%;
+          //  height: 100%;
+          //  animation-name: bar-ani;
+          //  animation-duration:9s;
+          //
+          //  //animation-direction: alternate;
+          //  animation-iteration-count:infinite;
+          //  animation-fill-mode:backwards;
+          //
+          //}
+
+          .advert-bar-item3{
+            .bar-item3{
+              animation-delay: 6s;
+            }
+          }
+
+          @keyframes bar-ani{ /*这个动画的意思就是宽度从0-100*/
+            0%{
+              width: 0;
+              background: rgba(255, 255, 255);
+            }
+            33.3%{
+              width: 100%;
+              background: rgba(255, 255, 255);
+            }
+            34%{
+              background: rgba(255, 255, 255, 0.4);
+            }
+            66.6%{
+              width: 0;
+              background: rgba(255, 255, 255, 0.4);
+            }
+            100%{
+              width: 0;
+              background: rgba(255, 255, 255);
+            }
+          }
         }
-      }
-
-      .advert-bar-item3{
-        left: 60%;
-        &::after{
-          animation-delay: 4s;
-        }
-      }
-
-      @keyframes bar-ani{ /*这个动画的意思就是宽度从0-100*/
-        0%{
-          width: 0;
-        }
-        25%{
+        .advert-img{
           width: 100%;
         }
-        50%{
-          width: 0;
-        }
-        75%{
-          width: 0;
-        }
-        100%{
-          width: 0;
-        }
       }
+    }
 
-      .advert-img{
-        width: 100%;
+    .content-second{
+      .title{
+        padding: 40px 0;
+        font-size: 40px;
+        text-align: center;
       }
+    }
+
+    .content-third{
+      display: flex;
     }
   }
 
