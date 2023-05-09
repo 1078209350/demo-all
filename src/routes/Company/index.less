@@ -1,5 +1,17 @@
 @import '../../../src/common/common.less';
 
+:global {
+  .swiper-pagination-bullets{
+    left: 10%;
+    right: unset !important;
+    .swiper-pagination-bullet{
+      display: inline-block !important;
+      margin: 0 !important;
+    }
+  }
+
+}
+
 .container{
   .header{
     position: fixed;
@@ -198,7 +210,97 @@
     }
 
     .content-third{
+      width: 100%;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .third-left{
+        width: 45%;
+        height: 100%;
+        position: relative;
+        .paging{
+          position: absolute;
+          top: 50%;
+          left: 10%;
+          transform: translate(0, -50%);
+          .li{
+            margin: 40px 0;
+            color: #999999;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            .dot-container{
+              width: 20px;
+              height: 20px;
+              margin-right: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              .dot{
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #999;
+              }
+              .dot-active{
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #B7C9DF;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &::after{
+                  content: '';
+                  display: inline-block;
+                  width: 10px;
+                  height: 10px;
+                  border-radius: 50%;
+                  background: #00428E;
+                }
+              }
+            }
+          }
+
+        }
+        .desc{
+          position: absolute;
+          top: 50%;
+          left: 35%;
+          transform: translate(0, -50%);
+          .item{
+            margin-right: 50px;
+            .desc-title{
+              font-size: 40px;
+              font-weight: 400
+            }
+            .desc-detail{
+              font-size: 16px;
+              font-weight: 200
+            }
+          }
+
+        }
+      }
+      .third-right{
+        width: 55%;
+        height: 100%;
+      }
+    }
+
+    .content-fourth{
+      width: 100%;
+      height: 500px;
+      background: black;
+      .title{
+        padding-top: 30px;
+        color: #FFFFFF;
+        text-align: center;
+      }
+
     }
   }
 
