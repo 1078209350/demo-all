@@ -12,6 +12,7 @@ import contentThird1 from '@public/company/contentThird1.mp4';
 import contentThird2 from '@public/company/contentThird2.mp4';
 import contentThird3 from '@public/company/contentThird3.mp4';
 import contentThird4 from '@public/company/contentThird4.mp4';
+// import contentFourth1 from '@public/company/contentFourth1.mp4';
 
 import pro1 from '@public/company/pro1.png';
 import pro2 from '@public/company/pro2.png';
@@ -39,6 +40,7 @@ class Company extends React.Component {
     this.state = {
       advertOrder: 1,
       thirdVideo: 1, // 第三部分video顺序
+      disabledBtn: true, // 第四部分左边按钮悬停是否隐藏
     };
   }
 
@@ -503,6 +505,19 @@ class Company extends React.Component {
           </div>
           <div className={styles['content-fourth']}>
             <h1 className={styles.title}>市场亮点</h1>
+            <div
+              className={styles.left}
+              onMouseEnter={() => console.log(1111)}
+              onMouseLeave={() => console.log(2222)}
+            >
+              <div className={styles.desc}>
+                <p className={styles.p1}>环境感知</p>
+                <p className={styles.p2}>车大灯鬼像抑制</p>
+                <p className={styles.p2}>高低温成像清晰</p>
+                <p className={styles.p2}>结构抗震不松动</p>
+                <div className={styles.btn}>{`查看详情 --->`}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
