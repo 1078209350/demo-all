@@ -1,0 +1,128 @@
+.content-first{
+  .advert{
+    position: absolute;
+    top: 0px;
+    .advert-desc{
+      display: flex;
+      position: absolute;
+      top: 30%;
+      left: 10%;
+      z-index: 199;
+      transform: translate(0%, -50%);
+      color: white;
+      .desc1{
+        font-size: 15px;
+        margin-bottom: 25px;
+      }
+      .desc2{
+        font-size: 42px;
+        margin-bottom: 25px;
+      }
+      .desc-btn{
+        display: inline-block;
+        font-size: 1em;
+        border: 1px solid #FFFFFF;
+        border-radius: 50px;
+        padding: 1em 1.5em;
+        font-weight: 400;
+        color: #FFFFFF;
+        margin: 1em 0;
+        transition: all 1s;
+        cursor: pointer;
+        background-color:transparent;
+      }
+    }
+
+    .advert-bar{
+      position: absolute;
+      z-index: 199;
+      width: 80%;
+      left: 10%;
+      top: 80%;
+      display: flex;
+      justify-content: space-between;
+      .advert-bar-item1, .advert-bar-item2, .advert-bar-item3{
+        width: 30%;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+
+        .bar-item1, .bar-item2, .bar-item3{
+          display: block;
+          width: 0%;
+          height: 100%;
+          background-color: white;
+          animation-name: bar-ani;
+          animation-duration:9s;
+
+          //animation-direction: alternate;
+          animation-iteration-count:infinite;
+          animation-fill-mode:forwards; /*动画停在最后100%时候的状态*/
+        }
+
+        @keyframes bar-ani{ /*这个动画的意思就是宽度从0-100*/
+          from{
+            width: 0;
+          }
+          to{
+            width: 100%;
+          }
+        }
+      }
+
+
+      .advert-bar-item2{
+        .bar-item2{
+          animation-delay: 3s;
+          &:active{
+            background: red;
+          }
+        }
+
+      }
+      //
+      //.advert-bar-item2:active > .bar-item2{
+      //  width: 33%;
+      //  height: 100%;
+      //  animation-name: bar-ani;
+      //  animation-duration:9s;
+      //
+      //  //animation-direction: alternate;
+      //  animation-iteration-count:infinite;
+      //  animation-fill-mode:backwards;
+      //
+      //}
+
+      .advert-bar-item3{
+        .bar-item3{
+          animation-delay: 6s;
+        }
+      }
+
+      @keyframes bar-ani{ /*这个动画的意思就是宽度从0-100*/
+        0%{
+          width: 0;
+          background: rgba(255, 255, 255);
+        }
+        33.3%{
+          width: 100%;
+          background: rgba(255, 255, 255);
+        }
+        34%{
+          background: rgba(255, 255, 255, 0.4);
+        }
+        66.6%{
+          width: 0;
+          background: rgba(255, 255, 255, 0.4);
+        }
+        100%{
+          width: 0;
+          background: rgba(255, 255, 255);
+        }
+      }
+    }
+    .advert-img{
+      width: 100%;
+    }
+  }
+}
