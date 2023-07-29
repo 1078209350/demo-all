@@ -1,12 +1,9 @@
 import React from 'react';
-
-// import {Button} from 'choerodon-ui/pro';
-import classnames from 'classnames';
-
 import FirstPart from './Homepage/FirstPart';
 import SecondPart from './Homepage/SecondPart';
 import ThirdPart from './Homepage/ThirdPart';
 import FourthPart from './Homepage/FourthPart';
+import FifthPart from './Homepage/FifthPart';
 
 import styles from './index.less';
 import 'swiper/swiper-bundle.css';
@@ -43,6 +40,7 @@ class Company extends React.Component {
           <SecondPart />
           <ThirdPart />
           <FourthPart />
+          <FifthPart />
         </div>
       </div>
     );

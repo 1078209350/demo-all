@@ -1,5 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Bind } from 'lodash-decorators';
+import { throttle } from 'lodash';
 import SwiperCore, { Mousewheel, Pagination } from 'swiper/core'; // 引入核心插件和自动播放组件
 
 import pro1 from '@public/company/pro1.png';
@@ -26,9 +28,18 @@ export default class SecondPart extends React.Component {
     this.state = {};
   }
 
+  @Bind()
+  handleScroll = throttle(
+    (e) => {
+      console.log(222);
+    },
+    1000,
+    { trailing: false }
+  );
+
   render() {
     return (
-      <div className={styles['content-second']}>
+      <div className={styles['content-second']} onWheel={(e) => this.handleScroll(e)}>
         <h1 className={styles.title}>赋能高阶自动驾驶，为客户增值</h1>
         <div style={{ width: '100%', height: '600px', textAlign: 'center' }}>
           <Swiper
