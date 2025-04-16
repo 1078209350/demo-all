@@ -1,0 +1,63 @@
+# Default values for clmp-customize.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+image:
+  repository: harbor.c7n-2.csleasing.com.cn/csleasing-clcms-core/pcf-ai-bot
+  pullPolicy: Always
+
+env:
+  open:
+    # 反向代理 网络名
+    AFS_GATEWAY_NET_NAME: svc-afs-gateway-a0495a
+    # 反向代理 端口
+    AFS_GATEWAY_NET_PORT: 9999
+    # nginx access日志
+    NGINX_ACCESS_LOG: /opt/log/nginx/access.log
+    # nginx error日志
+    NGINX_ERROR_LOG: /opt/log/nginx/access.log
+metrics:
+  path: /prometheus
+  group: spring-boot
+logs:
+  parser: spring-boot
+persistence:
+  enabled: false
+service:
+  enabled: false
+  type: ClusterIP
+  port: 80
+  name: pcf-ai-bot
+deployment:
+  # 管理端口
+  managementPort: 9991
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources,such as Minikube. If you do want to specify resources,uncomment the following
+  # lines,adjust them as necessary,and remove the curly braces after 'resources:'.
+  limits:
+    # cpu: 100m
+    memory: 1Gi
+  requests:
+    # cpu: 100m
+    memory: 0.5Gi
+tolerations:
+  enabled: true
+  taints:
+    "os-name": "kylin"
+affinity:
+  enabled: true
+  nodeAffinity:
+    enabled: true
+    # In和NotIn里满足一个就够了（或的关系）
+    In:
+      # labels里要全部满足 （且的关系）
+      labels:
+        "os-name":
+          - kylin
+    ## pod反亲和, pod会优先调度到没有有下面标签的节点上
+  podAntiAffinity:
+    enabled: false
+    namespaces: default
+    topologyKey: kubernetes.io/hostname

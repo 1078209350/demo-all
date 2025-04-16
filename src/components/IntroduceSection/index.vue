@@ -1,0 +1,140 @@
+<template>
+  <div class="introduce">
+    <div class="introduce-img">
+      <img
+        :style="{ width: isCoscosTestAccount() ? '143px' : '170px' }"
+        :src="isCoscosTestAccount() ? CosBigHeader : cute"
+        fit="cover"
+        alt=""
+      />
+    </div>
+    <div class="introduce-desc">
+      <div class="ai-introduction">{{ introContent.greeting }}</div>
+      <div class="ai-introduction">
+        {{ introContent.introduction.prefix
+        }}<img v-if="introContent.introduction.showIcon" class="x-icon" :src="XIcon" alt="X" />{{
+          introContent.introduction.suffix
+        }}
+      </div>
+      <div class="ai-function" v-html="md.render(titleTip)"></div>
+      <div class="ai-tips-container" v-if="type !== 'deepSeek' && introContent.tips.items.length">
+        <div class="tips-title">{{ introContent.tips.title }}</div>
+        <div class="tips-desc" v-for="(tip, index) in introContent.tips.items" :key="index">
+          {{ tip }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import cute from '@/assets/imgs/cute.png'
+import CosBigHeader from '@/assets/imgs/cos-big-header.png'
+import XIcon from '@/assets/imgs/x-icon.png'
+import { md } from '@/utils/markdown'
+import { isCoscosTestAccount } from '@/api/menu/menuConfig'
+
+defineProps<{
+  type: string
+  titleTip: string
+  introContent: {
+    greeting: string
+    introduction: {
+      prefix: string
+      suffix: string
+      showIcon?: boolean
+    }
+    tips: {
+      title: string
+      items: string[]
+    }
+  }
+}>()
+</script>
+
+<style scoped lang="less">
+.introduce {
+  display: flex;
+  margin: 50px 0 30px;
+
+  :deep(.ai-function) {
+    strong {
+      font-weight: 800;
+      // color: #000;
+    }
+  }
+
+  .introduce-img {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  .introduce-desc {
+    width: calc(100% - 40px);
+    height: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+    box-sizing: border-box;
+
+    .ai-introduction {
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 36px;
+      letter-spacing: -0.165px;
+      color: #484f5f;
+
+      .x-icon {
+        width: 13px;
+        height: 13px;
+        margin: 0 4px;
+        vertical-align: middle;
+      }
+    }
+
+    .ai-function {
+      margin-top: 10px;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.165px;
+      color: #777f89;
+    }
+
+    .ai-tips-container {
+      width: 100%;
+      height: calc(100% - 112px);
+      padding: 18px;
+      margin-top: 10px;
+      background: #eef3ff;
+      border-radius: 8px;
+      box-sizing: border-box;
+
+      .tips-title {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: -0.165px;
+        color: #0957ac;
+      }
+
+      .tips-desc {
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: -0.165px;
+        color: #777f89;
+      }
+    }
+  }
+}
+</style>

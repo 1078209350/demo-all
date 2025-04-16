@@ -1,0 +1,29 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "prettier.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "[vue]": {
+    // "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+      "editor.defaultFormatter": "Vue.volar"
+  },
+  "god.tsconfig": "./tsconfig.json",
+  "cSpell.words": [
+    "coscos",
+    "Jing",
+    "jlts",
+    "linkify",
+    "mdit",
+    "mobi",
+    "msword",
+    "officedocument",
+    "openxmlformats",
+    "pinia",
+    "spreadsheetml",
+    "ssologin",
+    "svgs",
+    "vant",
+    "wordprocessingml"
+  ],
+}

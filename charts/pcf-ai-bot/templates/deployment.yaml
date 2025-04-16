@@ -1,0 +1,122 @@
+kind: Deployment
+apiVersion: {{ include "app.deployment.apiVersion" . }}
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+{{ include "service.labels.standard" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+{{ include "service.labels.standard" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{ include "service.labels.standard" . | indent 8 }}
+{{ include "service.microservice.labels" . | indent 8 }}
+        release.csleasing.com.cn/name: {{ .Release.Name }}
+    spec:
+{{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+          - name: {{ .Values.imagePullSecrets }}
+{{- end }}
+{{- if not (empty .Values.image.nodeName) }}
+      nodeName: {{ .Values.image.nodeName }}
+{{- end }}
+      ## 配置污点容忍
+{{- if .Values.tolerations.enabled }}
+      tolerations:
+{{- range $name, $value := .Values.tolerations.taints }}
+{{- if not (empty $value) }}
+        - key: {{ $name | quote }}
+          operator: "Equal"
+          value: {{ $value | quote }}
+          effect: "NoSchedule"
+{{- else if not (empty $name) }}
+        - key: {{ $name | quote }}
+          operator: "Exists"
+          effect: "NoSchedule"
+{{- end }}
+{{- end }}
+{{- end }}
+
+      ## 配置节点亲和
+{{- if .Values.affinity.enabled }}
+      affinity:
+{{- if .Values.affinity.nodeAffinity.enabled }}
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:  # 强制满足
+            nodeSelectorTerms:     # terms里满足一个就够了（或的关系）
+{{- if not (empty .Values.affinity.nodeAffinity.In) }}
+              - matchExpressions:  # match里要全部满足 （且的关系）
+{{- range $name, $value := .Values.affinity.nodeAffinity.In.labels }}
+{{- if not (empty $value) }}
+                  - key: {{ $name | quote }}
+                    operator: In
+                    values:
+{{ toYaml $value | indent 22 }}
+{{- end }}
+{{- end }}
+
+{{- if not (empty .Values.affinity.nodeAffinity.NotIn) }}
+              - matchExpressions:
+{{- range $name, $value := .Values.affinity.nodeAffinity.NotIn.labels }}
+{{- if not (empty $value) }}
+                  - key: {{ $name | quote }}
+                    operator: NotIn
+                    values:
+{{ toYaml $value | indent 22 }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- if .Values.affinity.podAntiAffinity.enabled }}
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+{{- range $name, $value := .Values.affinity.podAntiAffinity.labels }}
+{{- if not (empty $value) }}
+                    {{ $name | quote }}: {{ $value }}
+{{- end }}
+{{- end }}
+                namespaces:
+                  - {{ .Values.affinity.podAntiAffinity.namespaces }}
+                topologyKey: {{ .Values.affinity.podAntiAffinity.topologyKey }}
+              weight: 100
+{{- end }}
+{{- end }}
+      containers:
+        - name: {{ .Release.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.Version }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+{{- range $name, $value := .Values.env.open }}
+{{- if not (empty $value) }}
+          - name: {{ $name | quote }}
+            value: {{ $value | quote }}
+{{- end }}
+{{- end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          volumeMounts:
+          - mountPath: /Charts
+            name: data
+{{- if not (empty .Values.persistence.subPath) }}
+            subPath: {{ .Values.persistence.subPath }}
+{{- end }}
+      volumes:
+      - name: data
+        {{- if .Values.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistence.existingClaim | default ( .Release.Name ) }}
+        {{- else }}
+        emptyDir: {}
+        {{- end }}
