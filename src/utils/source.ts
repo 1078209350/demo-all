@@ -87,7 +87,7 @@ export const needSSO = (): boolean => {
   // if (ua.isMobile() && (isWeCom() || isWeChat())) {
   //   return false
   // }
-  return true
+  return false
 }
 
 export const needVoiceInput = (): boolean => ua.isMobile() && (ua.isWeCom() || ua.isWeChat())
