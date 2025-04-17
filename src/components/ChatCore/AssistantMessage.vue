@@ -88,12 +88,12 @@ const renderContent = (content: string) => {
   })
   // 提取内容到数组
   // @ts-ignore
-  questionList.value = (content.match(/<ansQues>(.*?)<\/ansQues>/g) || []).map((item) =>
-    item.replace(/<\/?ansQues>/g, '')
+  questionList.value = (content.match(/<AQ>(.*?)<\/AQ>/g) || []).map((item) =>
+    item.replace(/<\/?AQ>/g, '')
   )
 
   // 删除原字符串中的标签部分
-  const cleanedStr = content.split('<ansQues>')[0]
+  const cleanedStr = content.split('<AQ>')[0]
   return md.render(cleanedStr)
 }
 

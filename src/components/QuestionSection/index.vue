@@ -6,9 +6,9 @@
         class="question-item"
         v-for="(item, index) in props.questionList"
         :key="index"
-        @click="handleQuestionClick($event, item.desc)"
+        @click="handleQuestionClick($event, item)"
       >
-        <div class="question-desc">{{ item.desc }}</div>
+        <div class="question-desc">{{ item }}</div>
       </div>
     </div>
   </div>
@@ -24,6 +24,8 @@ const props = defineProps<{
   type: string
   questionList: Question[]
 }>()
+
+console.log(props.questionList)
 
 const emit = defineEmits(['question-click'])
 

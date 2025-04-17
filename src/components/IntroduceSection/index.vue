@@ -9,17 +9,17 @@
       />
     </div>
     <div class="introduce-desc">
-      <div class="ai-introduction">{{ introContent.greeting }}</div>
+      <div class="ai-introduction">{{ greeting }}</div>
       <div class="ai-introduction">
-        {{ introContent.introduction.prefix
-        }}<img v-if="introContent.introduction.showIcon" class="x-icon" :src="XIcon" alt="X" />{{
-          introContent.introduction.suffix
+        {{ modelConfigIntro.prefix
+        }}<img v-if="modelConfigIntro.showIcon" class="x-icon" :src="XIcon" alt="X" />{{
+          modelConfigIntro.suffix
         }}
       </div>
-      <div class="ai-function" v-html="md.render(titleTip)"></div>
-      <div class="ai-tips-container" v-if="type !== 'deepSeek' && introContent.tips.items.length">
-        <div class="tips-title">{{ introContent.tips.title }}</div>
-        <div class="tips-desc" v-for="(tip, index) in introContent.tips.items" :key="index">
+      <!--      <div class="ai-function" v-html="md.render(titleTip)"></div>-->
+      <div class="ai-tips-container">
+        <div class="tips-title">{{ modelConfigTips.title }}</div>
+        <div class="tips-desc" v-for="(tip, index) in modelConfigTips.items" :key="index">
           {{ tip }}
         </div>
       </div>
@@ -36,19 +36,9 @@ import { isCoscosTestAccount } from '@/api/menu/menuConfig'
 
 defineProps<{
   type: string
-  titleTip: string
-  introContent: {
-    greeting: string
-    introduction: {
-      prefix: string
-      suffix: string
-      showIcon?: boolean
-    }
-    tips: {
-      title: string
-      items: string[]
-    }
-  }
+  greeting: string
+  modelConfigIntro: object
+  modelConfigTips: object
 }>()
 </script>
 

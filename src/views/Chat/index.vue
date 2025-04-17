@@ -9,39 +9,39 @@ import IntroduceSection from '@/components/IntroduceSection/index.vue'
 import QuestionSection from '@/components/QuestionSection/index.vue'
 import { AIFile, ChatExtraParams } from '@/api/chat/types'
 import { isShowQuestionSection } from '@/api/menu/menuConfig'
+import { getExampleQuestion } from '@/api/example'
 
 interface Props {
   type: string
+  greeting: string
+  modelConfigIntro: object
+  modelConfigTips: object
 }
 
 const props = defineProps<Props>()
 
-const {
-  titleTip,
-  bottomTip,
-  dataList,
-  textList,
-  publicList,
-  ticketList,
-  fetchData,
-  setTitleTip,
-  setBottomTip,
-  introContent,
-  setIntroContent
-} = usePageData(props.type)
+const { bottomTip, fetchData, setTitleTip, setBottomTip, setIntroContent } = usePageData(props.type)
 let isTalking = ref(false)
 const isChat = ref(false)
 const chatCoreRef = ref<any>()
 const hasSelectedFiles = ref(false)
 const inputHeight = ref(88)
 const { isShowTool } = useToolbar(props.type)
+const dataList = ref([])
+const textList = ref([])
+const publicList = ref([])
+const ticketList = ref([])
 
 onMounted(async () => {
   inputHeight.value = isShowTool ? 198 : 88
   setTitleTip()
   setBottomTip()
   setIntroContent()
-  await fetchData()
+  // await fetchData()
+  const res = await getExampleQuestion()
+  dataList.value = res.data['ym-product']
+  textList.value = res.data['ym-product1']
+  publicList.value = res.data['ym-product2']
 })
 
 // 子组件改变isTalking的值
@@ -66,11 +66,11 @@ const handleSearch = async (text: string, files?: AIFile[], options?: ChatExtraP
 
 const questionList = computed(() => {
   switch (props.type) {
-    case 'data':
+    case 'ym-product':
       return dataList.value
-    case 'text':
+    case 'ym-product1':
       return textList.value
-    case 'public':
+    case 'ym-product2':
       return publicList.value
     case 'ticket':
       return ticketList.value
@@ -96,9 +96,14 @@ defineExpose({ isTalking })
 <template>
   <div class="container-ai">
     <div class="guide-page" v-if="!isChat" :style="{ marginBottom: inputHeight + 'px' }">
-      <IntroduceSection :type="props.type" :titleTip="titleTip" :introContent="introContent" />
+      <IntroduceSection
+        :type="props.type"
+        :greeting="greeting"
+        :modelConfigIntro="modelConfigIntro"
+        :modelConfigTips="modelConfigTips"
+      />
       <QuestionSection
-        v-if="isShowQuestionSection(props.type) && questionList.length > 0"
+        v-if="questionList.length > 0"
         :type="props.type"
         :questionList="questionList"
         @question-click="handleModel"

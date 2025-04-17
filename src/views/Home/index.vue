@@ -12,19 +12,26 @@
       <div class="whale">
         <div
           v-for="item in visibleMenuItems"
-          :key="item.id"
-          :class="['whale-item', whaleSelected === item.type ? 'whale-selected' : '']"
-          @click="handleMenuClick(item.type)"
+          :key="item.modelName"
+          :class="['whale-item', whaleSelected === item.modelName ? 'whale-selected' : '']"
+          @click="handleMenuClick(item.modelName)"
         >
-          <span>{{ item.name }}</span>
+          <span>{{ item.modelName }}</span>
           <!--          <img height="50" :src="item.icon" :alt="item.name" />-->
         </div>
       </div>
     </ElAside>
     <div class="aside preload-img"></div>
     <ElMain :style="{ width: 'calc(100% - 128px)', padding: 0 }">
-      <template v-for="item in visibleMenuItems" :key="item.id">
-        <chat v-if="whaleSelected === item.type" ref="chatRef" :type="item.type" />
+      <template v-for="item in visibleMenuItems" :key="item.modelName">
+        <chat
+          v-if="whaleSelected === item.modelName"
+          ref="chatRef"
+          :type="item.modelName"
+          :greeting="item.greeting"
+          :modelConfigIntro="item.modelConfigIntro"
+          :modelConfigTips="item.modelConfigTips"
+        />
       </template>
     </ElMain>
   </ElContainer>
@@ -45,9 +52,10 @@ import { useMenu } from '@/composables/Home/useMenu'
 import { isCoscosTestAccount } from '@/api/menu/menuConfig'
 import { getModelList } from '@/api/home'
 
-const { whaleSelected, chatRef, visibleMenuItems, initSelectedItem, changeWhaleItem } = useMenu()
+const { whaleSelected, chatRef, initSelectedItem, changeWhaleItem } = useMenu()
 const userInfoDialogVisible = ref(false)
 const currentRow = ref('')
+const visibleMenuItems = ref([])
 
 // 监听登录状态变化
 onMounted(() => {
@@ -57,6 +65,7 @@ onMounted(() => {
 
 const init = async () => {
   const res = await getModelList()
+  visibleMenuItems.value = res.data
   console.log(res)
 }
 
