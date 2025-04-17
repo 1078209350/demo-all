@@ -4,7 +4,7 @@ import { ElImage } from 'element-plus'
 import { md } from '@/utils/markdown'
 import Loading from './Loading.vue'
 import Dislike from './Dislike.vue'
-import AnswerHead from '@/assets/imgs/answer-head.png'
+import AnswerHead from '@/assets/imgs/cute.png'
 import CosHead from '@/assets/imgs/cos-header.png'
 import refresh from '@/assets/imgs/refresh.png'
 import like from '@/assets/imgs/like.png'
@@ -417,10 +417,10 @@ const toggleThinking = () => {
   display: flex;
   flex-direction: column;
   span {
-    border-radius: 5px;
-    color: white;
-    background: #1a73e8;
-    margin-bottom: 5px;
+    border-radius: 10px;
+    color: #1a73e8;
+    background: white;
+    margin-bottom: 7px;
     border: 1px solid #1a73e8;
     padding: 10px;
   }

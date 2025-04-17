@@ -13,10 +13,12 @@
         <div
           v-for="item in visibleMenuItems"
           :key="item.modelName"
-          :class="['whale-item', whaleSelected === item.modelName ? 'whale-selected' : '']"
+          class="whale-item"
           @click="handleMenuClick(item.modelName)"
         >
-          <span>{{ item.modelName }}</span>
+          <span :class="[whaleSelected === item.modelName ? 'whale-selected' : '']">{{
+            item.modelName
+          }}</span>
           <!--          <img height="50" :src="item.icon" :alt="item.name" />-->
         </div>
       </div>
@@ -98,7 +100,7 @@ const closeUserInfoDialog = (isCancel) => {
   height: 100%;
   font-family: 'PingFang SC';
   font-size: 14px;
-  color: #fff;
+  //color: #1a73e8;
   background: #eef3ff;
 
   .el-divider--vertical {
@@ -226,7 +228,9 @@ const closeUserInfoDialog = (isCancel) => {
       }
 
       .whale-selected {
-        background: linear-gradient(90deg, #2073cd 0%, #0957ac 100%);
+        padding: 25px 5px;
+        background: rgb(255 255 255 / 90%);
+        border-radius: 10px;
       }
     }
 
