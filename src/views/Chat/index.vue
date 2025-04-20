@@ -8,19 +8,25 @@ import { usePageData } from './data'
 import IntroduceSection from '@/components/IntroduceSection/index.vue'
 import QuestionSection from '@/components/QuestionSection/index.vue'
 import { AIFile, ChatExtraParams } from '@/api/chat/types'
-import { isShowQuestionSection } from '@/api/menu/menuConfig'
 import { getExampleQuestion } from '@/api/example'
 
 interface Props {
   type: string
   greeting: string
-  modelConfigIntro: object
-  modelConfigTips: object
+  modelConfigIntro: {
+    showIcon: boolean
+    prefix: string
+    suffix: string
+  }
+  modelConfigTips: {
+    title: string
+    items: string[]
+  }
 }
 
 const props = defineProps<Props>()
 
-const { bottomTip, fetchData, setTitleTip, setBottomTip, setIntroContent } = usePageData(props.type)
+const { bottomTip, setTitleTip, setBottomTip, setIntroContent } = usePageData(props.type)
 let isTalking = ref(false)
 const isChat = ref(false)
 const chatCoreRef = ref<any>()
@@ -39,9 +45,9 @@ onMounted(async () => {
   setIntroContent()
   // await fetchData()
   const res = await getExampleQuestion()
-  dataList.value = res.data['ym-product']
-  textList.value = res.data['ym-product1']
-  publicList.value = res.data['ym-product2']
+  dataList.value = res.data['ym_product']
+  textList.value = res.data['ym_coder']
+  publicList.value = res.data['ym_teacher']
 })
 
 // 子组件改变isTalking的值
@@ -66,11 +72,11 @@ const handleSearch = async (text: string, files?: AIFile[], options?: ChatExtraP
 
 const questionList = computed(() => {
   switch (props.type) {
-    case 'ym-product':
+    case 'ym_product':
       return dataList.value
-    case 'ym-product1':
+    case 'ym_coder':
       return textList.value
-    case 'ym-product2':
+    case 'ym_teacher':
       return publicList.value
     case 'ticket':
       return ticketList.value

@@ -1,27 +1,17 @@
 import { ref, computed } from 'vue'
-import {
-  pcfMenuConfig,
-  coscosMenuConfig,
-  isCoscosTestAccount,
-  isTestAccount
-} from '@/api/menu/menuConfig'
+import { pcfMenuConfig, isTestAccount } from '@/api/menu/menuConfig'
 import { useLoginStoreWithOut } from '@/store/modules/login'
 import { useUserStoreWithOut, localDataAuthorization } from '@/store/modules/user'
 
 export function useMenu() {
   const loginStore = useLoginStoreWithOut()
   const userStore = useUserStoreWithOut()
-  const whaleSelected = ref('ym-product')
+  const whaleSelected = ref('ym_product')
   const chatRef = ref()
 
   // 计算可见的菜单项
   const visibleMenuItems = computed(() => {
-    let menuConfig
-    if (isCoscosTestAccount()) {
-      menuConfig = coscosMenuConfig.items
-    } else {
-      menuConfig = pcfMenuConfig.items
-    }
+    const menuConfig = pcfMenuConfig.items
     const menus = menuConfig.filter((item) => {
       // 权限检查
       if (item.permission && !loginStore.getLoginInfo[item.permission]) {

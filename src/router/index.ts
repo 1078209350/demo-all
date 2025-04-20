@@ -1,7 +1,6 @@
 import { useNProgress } from '@/hooks/web/useNProgress'
-import { refreshTokenLogic, tripartitePlatformLogin } from '@/utils/utils'
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { isMobileOnly, needSSO } from '@/utils/source'
+import { isMobileOnly } from '@/utils/source'
 
 const { start, done } = useNProgress()
 
@@ -39,34 +38,25 @@ const router = createRouter({
   ]
 })
 
-const whiteList = ['/sso'] // 不重定向白名单
-
 // router guard
 router.beforeEach(async (to, _, next) => {
-  if (needSSO()) {
-    start()
-    console.log('router beforeEach to.path is ', to.path)
-    const enable = tripartitePlatformLogin(to.query)
-    if (enable) {
-      console.log('已登录... -1')
-      await refreshTokenLogic(true)
-      console.log('已登录... -2')
-      next()
-      console.log('已登录... -3')
-    } else {
-      console.log('未登录.... to.path is ', to.path)
-      if (whiteList.indexOf(to.path) !== -1) {
-        console.log('未登录... -1')
-        next()
-      } else {
-        console.log('未登录... -2')
-        next(`/login`) // 否则全部重定向到登录页
-      }
+  start()
+  console.log('router beforeEach to.path is ', to.path)
+  const enable = sessionStorage.getItem('token')
+  if (enable) {
+    console.log('已登录... -1')
+    if (to.path === '/login') {
+      next('/')
     }
-  } else {
     next()
+    console.log('已登录... -2')
+  } else if (to.path === '/login') {
+    console.log('前往登录')
+    next()
+  } else {
+    console.log('未登录.... to.path is ', to.path)
+    next(`/login`) // 否则全部重定向到登录页
   }
-
   console.log('路由检查... -0')
 })
 

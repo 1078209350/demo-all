@@ -182,38 +182,46 @@ const toggleThinking = () => {
       <img class="stop-answer-img" :src="stop" fit="cover" alt="" />
       <span class="stop-answer-word">停止生成</span>
     </div>
-    <div v-if="!item.isItemTalking && index == length - 1" class="guess-question">
-      <span
-        v-for="(item, indexx) in questionList"
-        :key="indexx"
-        @click="$emit('handle-ask-guess', item)"
-        >{{ item }}</span
-      >
-    </div>
-    <div v-if="!item.isItemTalking" class="bottom-tools">
-      <img class="refresh" :src="refresh" alt="重新提问" @click="$emit('handle-ask', index)" />
-      <div class="line"></div>
-      <img
-        class="like"
-        :src="item.likeLight ? likeL : like"
-        alt="点赞"
-        @click="$emit('handle-like', item)"
-      />
-      <div class="line"></div>
-      <img
-        class="dislike"
-        :src="item.dislikeLight ? dislikeL : dislike"
-        alt="踩一下"
-        @click="(e) => $emit('handle-dislike', item, index, e)"
-      />
-      <Dislike
-        :index="index"
-        :position="position"
-        :isDislikeContent="item.isDislikeContent"
-        :dislikeContent="dislikeContent"
-        :chatIdSelected="chatIdSelected"
-        @handle-close-dislike="$emit('handle-close-dislike', index)"
-      />
+    <div
+      class="answer-bottom"
+      :style="{
+        justifyContent: questionList.length > 0 && index == length - 1 ? 'space-between' : 'end'
+      }"
+    >
+      <div v-if="!item.isItemTalking && index == length - 1" class="guess-question">
+        <span
+          style="cursor: pointer"
+          v-for="(item, indexx) in questionList"
+          :key="indexx"
+          @click="$emit('handle-ask-guess', item)"
+          >{{ item }}</span
+        >
+      </div>
+      <div v-if="!item.isItemTalking" class="bottom-tools">
+        <img class="refresh" :src="refresh" alt="重新提问" @click="$emit('handle-ask', index)" />
+        <div class="line"></div>
+        <img
+          class="like"
+          :src="item.likeLight ? likeL : like"
+          alt="点赞"
+          @click="$emit('handle-like', item)"
+        />
+        <div class="line"></div>
+        <img
+          class="dislike"
+          :src="item.dislikeLight ? dislikeL : dislike"
+          alt="踩一下"
+          @click="(e) => $emit('handle-dislike', item, index, e)"
+        />
+        <Dislike
+          :index="index"
+          :position="position"
+          :isDislikeContent="item.isDislikeContent"
+          :dislikeContent="dislikeContent"
+          :chatIdSelected="chatIdSelected"
+          @handle-close-dislike="$emit('handle-close-dislike', index)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -411,55 +419,58 @@ const toggleThinking = () => {
   }
 }
 
-.guess-question {
-  margin: 10px 0 0 55px;
-  position: absolute;
+.answer-bottom {
   display: flex;
-  flex-direction: column;
-  span {
-    border-radius: 10px;
-    color: #1a73e8;
-    background: white;
-    margin-bottom: 7px;
-    border: 1px solid #1a73e8;
-    padding: 10px;
-  }
-}
-
-.bottom-tools {
-  position: relative;
-  display: flex;
-  margin-top: 10px;
-  text-align: right;
-  justify-content: flex-end;
-  align-items: center;
-  user-select: none; // 添加禁止选中
-
-  .refresh,
-  .like,
-  .dislike {
-    height: 16px;
-    padding: 2px;
-    margin: 0 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-
-  .refresh:hover,
-  .like:hover,
-  .dislike:hover {
+  align-items: start;
+  .guess-question {
+    margin: 10px 0 0 55px;
     display: flex;
-    padding: 2px;
-    background-color: #e7e7e8;
-    border-radius: 2px;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    span {
+      border-radius: 10px;
+      color: #1a73e8;
+      background: white;
+      margin-bottom: 7px;
+      border: 1px solid #1a73e8;
+      padding: 10px;
+    }
   }
 
-  .line {
-    width: 1px;
-    height: 10px;
-    background: #484f5f;
+  .bottom-tools {
+    position: relative;
+    display: flex;
+    margin-top: 10px;
+    text-align: right;
+    justify-content: flex-end;
+    align-items: center;
+    user-select: none; // 添加禁止选中
+
+    .refresh,
+    .like,
+    .dislike {
+      height: 16px;
+      padding: 2px;
+      margin: 0 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .refresh:hover,
+    .like:hover,
+    .dislike:hover {
+      display: flex;
+      padding: 2px;
+      background-color: #e7e7e8;
+      border-radius: 2px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .line {
+      width: 1px;
+      height: 10px;
+      background: #484f5f;
+    }
   }
 }
 </style>

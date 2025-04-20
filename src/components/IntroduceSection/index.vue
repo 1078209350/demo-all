@@ -31,14 +31,21 @@
 import cute from '@/assets/imgs/cute.png'
 import CosBigHeader from '@/assets/imgs/cos-big-header.png'
 import XIcon from '@/assets/imgs/x-icon.png'
-import { md } from '@/utils/markdown'
+// import { md } from '@/utils/markdown'
 import { isCoscosTestAccount } from '@/api/menu/menuConfig'
 
 defineProps<{
   type: string
   greeting: string
-  modelConfigIntro: object
-  modelConfigTips: object
+  modelConfigIntro: {
+    showIcon: boolean
+    prefix: string
+    suffix: string
+  }
+  modelConfigTips: {
+    title: string
+    items: string[]
+  }
 }>()
 </script>
 

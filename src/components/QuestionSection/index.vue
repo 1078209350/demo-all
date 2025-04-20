@@ -29,7 +29,7 @@ console.log(props.questionList)
 
 const emit = defineEmits(['question-click'])
 
-const handleQuestionClick = (event: Event, desc: string) => {
+const handleQuestionClick = (event: Event, desc: any) => {
   emit('question-click', event, desc)
 }
 </script>

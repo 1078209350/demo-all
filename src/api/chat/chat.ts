@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useChatStoreWithOut } from '@/store/modules/chat'
 import type { ChatMessage, ChatExtraParams, ChatRequestConfig, ChatResponse } from './types'
 import { handleLoginExpired } from '@/utils/utils'
@@ -103,6 +104,7 @@ export async function chatAi(
     const response = await fetch(fetchUrl, {
       signal: controller.signal,
       method: 'post',
+      // eslint-disable-next-line no-console
       headers: requestHeaders(),
       body: JSON.stringify(prepareChatConfig(requestMessages, fileIds, conversationId, reasoning))
     })

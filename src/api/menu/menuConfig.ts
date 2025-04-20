@@ -12,7 +12,8 @@ export const pcfMenuConfig = {
       icon: deepSeekIcon,
       type: 'ym-product',
       permission: 'hadDeepSeekPermission',
-      component: 'chat'
+      component: 'chat',
+      testOnly: false
     }
     // {
     //   id: 'text',

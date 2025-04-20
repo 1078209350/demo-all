@@ -1,35 +1,29 @@
 <template>
   <ElContainer class="home-container">
     <ElAside class="aside collapse" width="113px">
-      <img
-        v-if="showCoscoLogo"
-        width="82"
-        class="cosLogo"
-        src="@/assets/imgs/menu-logo.png"
-        alt=""
-      />
-      <img v-else width="60" class="logo" src="@/assets/imgs/whale-logo.png" alt="" />
+      <img width="60" class="logo" src="@/assets/imgs/whale-logo.png" alt="" />
       <div class="whale">
         <div
           v-for="item in visibleMenuItems"
-          :key="item.modelName"
+          :key="item.model"
           class="whale-item"
-          @click="handleMenuClick(item.modelName)"
+          @click="handleMenuClick(item.model)"
         >
-          <span :class="[whaleSelected === item.modelName ? 'whale-selected' : '']">{{
+          <span :class="[whaleSelected === item.model ? 'whale-selected' : '']">{{
             item.modelName
           }}</span>
           <!--          <img height="50" :src="item.icon" :alt="item.name" />-->
         </div>
       </div>
+      <img width="60" class="exit" src="@/assets/imgs/exit.png" alt="" @click="handleExit()" />
     </ElAside>
     <div class="aside preload-img"></div>
     <ElMain :style="{ width: 'calc(100% - 128px)', padding: 0 }">
-      <template v-for="item in visibleMenuItems" :key="item.modelName">
+      <template v-for="item in visibleMenuItems" :key="item.model">
         <chat
-          v-if="whaleSelected === item.modelName"
+          v-if="whaleSelected === item.model"
           ref="chatRef"
-          :type="item.modelName"
+          :type="item.model"
           :greeting="item.greeting"
           :modelConfigIntro="item.modelConfigIntro"
           :modelConfigTips="item.modelConfigTips"
@@ -45,23 +39,39 @@
 </template>
 
 <script setup lang="ts">
-import { ElContainer, ElAside, ElMain, ElDialog } from 'element-plus'
-import { ref, onMounted, computed } from 'vue'
+import { ElContainer, ElAside, ElMain, ElDialog, ElMessage } from 'element-plus'
+import { ref, onMounted } from 'vue'
 import { TokenWrite } from '@/components/TokenWrite'
 import chat from '@/views/Chat/index.vue'
 import { refreshTokenLogic } from '@/utils/utils'
 import { useMenu } from '@/composables/Home/useMenu'
-import { isCoscosTestAccount } from '@/api/menu/menuConfig'
 import { getModelList } from '@/api/home'
+import { useRouter } from 'vue-router'
 
-const { whaleSelected, chatRef, initSelectedItem, changeWhaleItem } = useMenu()
+const { push } = useRouter()
+
+interface VisibleMenuItems {
+  model: string
+  modelName: string
+  greeting: string
+  modelConfigIntro: {
+    showIcon: boolean
+    prefix: string
+    suffix: string
+  }
+  modelConfigTips: {
+    title: string
+    items: string[]
+  }
+}
+
+const { whaleSelected, chatRef, changeWhaleItem } = useMenu()
 const userInfoDialogVisible = ref(false)
 const currentRow = ref('')
-const visibleMenuItems = ref([])
+const visibleMenuItems = ref<VisibleMenuItems[]>([])
 
 // 监听登录状态变化
 onMounted(() => {
-  initSelectedItem()
   init()
 })
 
@@ -71,12 +81,8 @@ const init = async () => {
   console.log(res)
 }
 
-// 判断是否展示coscoLogo
-const showCoscoLogo = computed(() => {
-  return isCoscosTestAccount()
-})
-
 const handleMenuClick = async (type: string) => {
+  console.log(type)
   const result = await changeWhaleItem(type)
   if (result?.needAuth) {
     currentRow.value = result.authorization || ''
@@ -89,6 +95,13 @@ const handleMenuClick = async (type: string) => {
 const closeUserInfoDialog = (isCancel) => {
   userInfoDialogVisible.value = false
   changeWhaleItem('data', isCancel)
+}
+
+// 退出
+const handleExit = () => {
+  sessionStorage.removeItem('token')
+  ElMessage.success('登出成功')
+  push({ path: '/login' })
 }
 </script>
 
@@ -207,6 +220,12 @@ const closeUserInfoDialog = (isCancel) => {
       margin: 20px auto 13px;
     }
 
+    .exit {
+      width: 30%;
+      margin: 20px auto 50px;
+      cursor: pointer;
+    }
+
     .cosLogo {
       margin: 0 auto;
     }
@@ -221,6 +240,7 @@ const closeUserInfoDialog = (isCancel) => {
         justify-content: center;
         align-items: center;
         height: 100px;
+        cursor: pointer;
 
         img {
           margin-top: 25px;

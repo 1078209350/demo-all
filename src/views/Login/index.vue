@@ -60,7 +60,7 @@ import { getMathAuthCode, login } from '@/api/login'
 import { defaultCaptcha } from './data'
 import { useRouter } from 'vue-router'
 
-const { push, currentRoute } = useRouter()
+const { push } = useRouter()
 
 // 表单数据
 const formData = reactive({
