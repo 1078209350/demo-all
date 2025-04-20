@@ -11,10 +11,16 @@
     <div class="introduce-desc">
       <div class="ai-introduction">{{ greeting }}</div>
       <div class="ai-introduction">
-        {{ modelConfigIntro.prefix
-        }}<img v-if="modelConfigIntro.showIcon" class="x-icon" :src="XIcon" alt="X" />{{
-          modelConfigIntro.suffix
-        }}
+        <template v-for="(part, index) in processedParts" :key="index">
+          <span v-if="part.isClickable" @click="handleClick" class="clickable-text">
+            {{ part.content }}
+          </span>
+          <template v-else>
+            {{ part.content }}
+          </template>
+        </template>
+        <img v-if="modelConfigIntro.showIcon" class="x-icon" :src="XIcon" alt="X" />
+        {{ modelConfigIntro.suffix }}
       </div>
       <!--      <div class="ai-function" v-html="md.render(titleTip)"></div>-->
       <div class="ai-tips-container">
@@ -33,20 +39,71 @@ import CosBigHeader from '@/assets/imgs/cos-big-header.png'
 import XIcon from '@/assets/imgs/x-icon.png'
 // import { md } from '@/utils/markdown'
 import { isCoscosTestAccount } from '@/api/menu/menuConfig'
+import { onMounted, ref } from 'vue'
 
-defineProps<{
+interface ProcessedParts {
+  isClickable: boolean
+  content: string
+}
+
+const props = defineProps<{
   type: string
   greeting: string
   modelConfigIntro: {
     showIcon: boolean
     prefix: string
     suffix: string
+    url: string
   }
   modelConfigTips: {
     title: string
     items: string[]
   }
 }>()
+
+const processedParts = ref<ProcessedParts[]>([])
+
+onMounted(() => {
+  const res = processString(props.modelConfigIntro.prefix)
+  console.log(res)
+  processedParts.value = res
+})
+
+// 处理方法
+const processString = (str) => {
+  const regex = /<html>(.*?)<html>/g
+  const parts: any = []
+  let lastIndex = 0
+  let match
+
+  while ((match = regex.exec(str)) !== null) {
+    // 添加前置普通文本
+    if (match.index > lastIndex) {
+      parts.push({
+        content: str.slice(lastIndex, match.index),
+        isClickable: false
+      })
+    }
+    // 添加可点击内容
+    parts.push({
+      content: match[1],
+      isClickable: true
+    })
+    lastIndex = regex.lastIndex
+  }
+  // 添加剩余文本
+  if (lastIndex < str.length) {
+    parts.push({
+      content: str.slice(lastIndex),
+      isClickable: false
+    })
+  }
+  return parts
+}
+
+const handleClick = () => {
+  window.open(props.modelConfigIntro.url)
+}
 </script>
 
 <style scoped lang="less">
@@ -84,6 +141,12 @@ defineProps<{
       line-height: 36px;
       letter-spacing: -0.165px;
       color: #484f5f;
+
+      .clickable-text {
+        color: #0957ac;
+        //text-decoration: underline;
+        cursor: pointer;
+      }
 
       .x-icon {
         width: 13px;
