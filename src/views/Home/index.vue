@@ -239,16 +239,18 @@ const handleExit = () => {
         align-items: center;
         height: 100px;
         cursor: pointer;
-
+        //border-top: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
         img {
           margin-top: 25px;
         }
       }
 
       .whale-selected {
-        padding: 25px 5px;
-        background: rgb(255 255 255 / 90%);
-        border-radius: 10px;
+        padding: 25px 25px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 15px;
       }
     }
 
