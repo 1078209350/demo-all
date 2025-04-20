@@ -210,7 +210,7 @@ const handleExit = () => {
   .collapse {
     display: flex;
     text-align: center;
-    background: #eee;
+    background: #ffffff;
     flex-direction: column;
 
     .logo {

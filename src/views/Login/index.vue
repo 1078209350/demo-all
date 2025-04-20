@@ -39,7 +39,13 @@
       <!-- 记住密码和登录操作 -->
       <div class="form-footer">
         <ElCheckbox v-model="rememberPassword">记住密码</ElCheckbox>
-        <ElButton native-type="submit" type="primary" size="large" class="login-btn">
+        <ElButton
+          :loading="btnLoading"
+          native-type="submit"
+          type="primary"
+          size="large"
+          class="login-btn"
+        >
           登录
         </ElButton>
       </div>
@@ -72,6 +78,7 @@ const formData = reactive({
 const loginForm = ref(null)
 const captcha = ref(defaultCaptcha.code.src)
 const captchaKey = ref('')
+const btnLoading = ref(false)
 
 onMounted(() => {
   refreshCaptchaKey()
@@ -103,12 +110,13 @@ const rememberPassword = ref(false)
 
 // 登录处理
 const handleLogin = async () => {
-  console.log(formData)
+  btnLoading.value = true
   await loginForm.value.validate()
   // 进行md5加密
   formData.accountPwd = md5(`ym${formData.pwd}`)
   const res = await login(formData)
-  if (res.code === 2000) {
+  if (res?.code === 2000) {
+    btnLoading.value = false
     // 存储token到session
     sessionStorage.setItem('token', res.data.token)
     if (rememberPassword.value) {
@@ -116,6 +124,8 @@ const handleLogin = async () => {
     }
     ElMessage.success('登录成功！')
     push({ path: '/' })
+  } else {
+    btnLoading.value = false
   }
 }
 </script>
