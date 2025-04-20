@@ -199,20 +199,20 @@ const toggleThinking = () => {
       </div>
       <div v-if="!item.isItemTalking" class="bottom-tools">
         <img class="refresh" :src="refresh" alt="重新提问" @click="$emit('handle-ask', index)" />
-        <div class="line"></div>
-        <img
-          class="like"
-          :src="item.likeLight ? likeL : like"
-          alt="点赞"
-          @click="$emit('handle-like', item)"
-        />
-        <div class="line"></div>
-        <img
-          class="dislike"
-          :src="item.dislikeLight ? dislikeL : dislike"
-          alt="踩一下"
-          @click="(e) => $emit('handle-dislike', item, index, e)"
-        />
+        <!--        <div class="line"></div>-->
+        <!--        <img-->
+        <!--          class="like"-->
+        <!--          :src="item.likeLight ? likeL : like"-->
+        <!--          alt="点赞"-->
+        <!--          @click="$emit('handle-like', item)"-->
+        <!--        />-->
+        <!--        <div class="line"></div>-->
+        <!--        <img-->
+        <!--          class="dislike"-->
+        <!--          :src="item.dislikeLight ? dislikeL : dislike"-->
+        <!--          alt="踩一下"-->
+        <!--          @click="(e) => $emit('handle-dislike', item, index, e)"-->
+        <!--        />-->
         <Dislike
           :index="index"
           :position="position"
