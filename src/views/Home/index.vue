@@ -210,9 +210,7 @@ const handleExit = () => {
   .collapse {
     display: flex;
     text-align: center;
-    background-image: url('@/assets/imgs/collapse.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: #eee;
     flex-direction: column;
 
     .logo {
