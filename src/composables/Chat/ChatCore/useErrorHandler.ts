@@ -16,7 +16,7 @@ export function useErrorHandler(messageList, talkingEnd, processor) {
     processor.stopTalking = true
     cancelRequest()
     const lastMessage = messageList.value[messageList.value.length - 1]
-    const stopMessage = ` **（您中止了鲸宝的回答）**`
+    const stopMessage = ` **（您中止了仪迈的回答）**`
     lastMessage.content += stopMessage
     const contentLength = lastMessage.contentArray.length
     lastMessage.contentArray[contentLength - 1].value += stopMessage
