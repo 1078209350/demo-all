@@ -16,9 +16,9 @@
       </ElFormItem>
 
       <!-- 密码输入 -->
-      <ElFormItem prop="accountPwd">
+      <ElFormItem prop="pwd">
         <ElInput
-          v-model="formData.accountPwd"
+          v-model="formData.pwd"
           type="password"
           placeholder="密码"
           prefix-icon="Lock"
@@ -59,13 +59,14 @@ import { ElForm, ElFormItem, ElButton, ElInput, ElCheckbox, ElMessage } from 'el
 import { getMathAuthCode, login } from '@/api/login'
 import { defaultCaptcha } from './data'
 import { useRouter } from 'vue-router'
+import md5 from 'js-md5'
 
 const { push } = useRouter()
 
 // 表单数据
 const formData = reactive({
   account: '',
-  accountPwd: '',
+  pwd: localStorage.getItem('pwd'),
   captcha: ''
 })
 const loginForm = ref(null)
@@ -73,11 +74,6 @@ const captcha = ref(defaultCaptcha.code.src)
 const captchaKey = ref('')
 
 onMounted(() => {
-  // // 如果已经
-  // if () {
-  //
-  // }
-
   refreshCaptchaKey()
 })
 
@@ -98,7 +94,7 @@ const refreshCaptchaKey = async () => {
 // 表单验证规则
 const formRules = reactive({
   account: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-  accountPwd: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+  pwd: [{ required: true, message: '请输入密码', trigger: 'blur' }],
   captcha: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
 })
 
@@ -109,10 +105,15 @@ const rememberPassword = ref(false)
 const handleLogin = async () => {
   console.log(formData)
   await loginForm.value.validate()
+  // 进行md5加密
+  formData.accountPwd = md5(`ym${formData.pwd}`)
   const res = await login(formData)
   if (res.code === 2000) {
     // 存储token到session
     sessionStorage.setItem('token', res.data.token)
+    if (rememberPassword.value) {
+      localStorage.setItem('pwd', formData.pwd)
+    }
     ElMessage.success('登录成功！')
     push({ path: '/' })
   }
