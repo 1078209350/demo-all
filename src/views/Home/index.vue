@@ -1,14 +1,24 @@
 <template>
   <ElContainer class="home-container">
-    <ElAside class="aside collapse" width="113px">
+    <ElAside class="aside collapse" width="200px">
       <img width="60" class="logo" src="@/assets/imgs/whale-logo.png" alt="" />
       <div class="whale">
         <div
-          v-for="item in visibleMenuItems"
+          v-for="(item, index) in visibleMenuItems"
           :key="item.model"
           class="whale-item"
+          :style="{
+            border: whaleSelected === item.model ? '1px solid #ccc' : 'none',
+            background: whaleSelected === item.model ? 'rgba(0, 0, 0, 0.1)' : '#fff'
+          }"
           @click="handleMenuClick(item.model)"
         >
+          <ElIcon style="margin-right: 8px">
+            <Tickets v-if="index == 0" />
+            <Burger v-if="index == 1" />
+            <PriceTag v-if="index == 2" />
+            <FolderOpened v-if="index == 3" />
+          </ElIcon>
           <span :class="[whaleSelected === item.model ? 'whale-selected' : '']">{{
             item.modelName
           }}</span>
@@ -39,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { ElContainer, ElAside, ElMain, ElDialog, ElMessage } from 'element-plus'
+import { ElContainer, ElAside, ElMain, ElDialog, ElMessage, ElIcon } from 'element-plus'
 import { ref, onMounted } from 'vue'
 import { TokenWrite } from '@/components/TokenWrite'
 import chat from '@/views/Chat/index.vue'
@@ -47,6 +57,7 @@ import { refreshTokenLogic } from '@/utils/utils'
 import { useMenu } from '@/composables/Home/useMenu'
 import { getModelList } from '@/api/home'
 import { useRouter } from 'vue-router'
+import { Tickets, Burger, PriceTag, FolderOpened } from '@element-plus/icons-vue'
 
 const { push } = useRouter()
 
@@ -234,21 +245,23 @@ const handleExit = () => {
       overflow: auto;
 
       .whale-item {
+        margin: 10px 10px 10px 10px;
+        padding-left: 20px;
+        //padding: 10px 50px 10px 15px;
+        border-radius: 10px;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        height: 100px;
+        height: 40px;
         cursor: pointer;
         //border-top: 2px solid #ccc;
-        border-bottom: 2px solid #ccc;
         img {
           margin-top: 25px;
         }
       }
 
       .whale-selected {
-        padding: 25px 25px;
-        border-radius: 20px;
+        border-radius: 10px;
         font-weight: bold;
         font-size: 15px;
       }
