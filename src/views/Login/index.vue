@@ -112,6 +112,15 @@ const rememberPassword = ref(false)
 const handleLogin = async () => {
   btnLoading.value = true
   await loginForm.value.validate()
+  // 验证码校验
+  if (formData.captcha !== captchaKey.value) {
+    ElMessage.error('验证码错误！')
+    btnLoading.value = false
+    refreshCaptchaKey()
+    // 重置表单
+    formData.captcha = ''
+    return
+  }
   // 进行md5加密
   formData.accountPwd = md5(`ym${formData.pwd}`)
   const res = await login(formData)
