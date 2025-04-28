@@ -8,7 +8,7 @@ VITE_NODE_ENV=pro
 VITE_API_BASE_PATH=
 
 # 打包路径
-VITE_BASE_PATH=/pcf-ai-bot/
+VITE_BASE_PATH=/web/
 
 # 是否删除debugger
 VITE_DROP_DEBUGGER=true
@@ -20,7 +20,7 @@ VITE_DROP_CONSOLE=true
 VITE_SOURCEMAP=false
 
 # 输出路径
-VITE_OUT_DIR=dist/pcf-ai-bot
+VITE_OUT_DIR=dist/web
 
 # 标题
 VITE_APP_TITLE=鲸宝

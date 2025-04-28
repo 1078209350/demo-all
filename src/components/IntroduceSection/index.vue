@@ -3,7 +3,7 @@
     <div class="introduce-img">
       <img
         :style="{ width: isCoscosTestAccount() ? '143px' : '170px' }"
-        :src="isCoscosTestAccount() ? CosBigHeader : cute"
+        :src="cute"
         fit="cover"
         alt=""
       />
@@ -11,7 +11,7 @@
     <div class="introduce-desc">
       <div class="ai-introduction">{{ greeting }}</div>
       <div class="ai-introduction">
-        <template v-for="(part, index) in processedParts" :key="index">
+        <template v-for="part in processedParts" :key="part.content">
           <span v-if="part.isClickable" @click="handleClick" class="clickable-text">
             {{ part.content }}
           </span>
@@ -35,7 +35,6 @@
 
 <script setup lang="ts">
 import cute from '@/assets/imgs/cute.png'
-import CosBigHeader from '@/assets/imgs/cos-big-header.png'
 import XIcon from '@/assets/imgs/x-icon.png'
 // import { md } from '@/utils/markdown'
 import { isCoscosTestAccount } from '@/api/menu/menuConfig'
@@ -65,7 +64,7 @@ const processedParts = ref<ProcessedParts[]>([])
 
 onMounted(() => {
   const res = processString(props.modelConfigIntro.prefix)
-  console.log(res)
+  console.log('!!!!!', res)
   processedParts.value = res
 })
 

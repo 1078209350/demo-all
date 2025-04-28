@@ -5,12 +5,7 @@ import { md } from '@/utils/markdown'
 import Loading from './Loading.vue'
 import Dislike from './Dislike.vue'
 import AnswerHead from '@/assets/imgs/cute.png'
-import CosHead from '@/assets/imgs/cos-header.png'
 import refresh from '@/assets/imgs/refresh.png'
-import like from '@/assets/imgs/like.png'
-import likeL from '@/assets/imgs/like-light.png'
-import dislike from '@/assets/imgs/dislike.png'
-import dislikeL from '@/assets/imgs/dislike-light.png'
 import stop from '@/assets/imgs/stop.png'
 import loadFail from '@/assets/imgs/loadFail.png'
 import thinkClose from '@/assets/imgs/thinking-open-icon.png'
@@ -140,7 +135,7 @@ const toggleThinking = () => {
           height: isCoscosTestAccount() ? '26px' : '42px',
           marginTop: isCoscosTestAccount() ? '10px' : '0'
         }"
-        :src="isCoscosTestAccount() ? CosHead : AnswerHead"
+        :src="AnswerHead"
         fit="cover"
         alt=""
       />

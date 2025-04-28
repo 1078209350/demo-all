@@ -69,6 +69,7 @@ interface VisibleMenuItems {
     showIcon: boolean
     prefix: string
     suffix: string
+    url: string
   }
   modelConfigTips: {
     title: string

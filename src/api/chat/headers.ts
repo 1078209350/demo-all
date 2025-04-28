@@ -20,9 +20,8 @@ export const requestHeaders = () => {
     Authorization: authorization,
     accept: 'text/event-stream',
     user: chatStore.getUserLocalId,
-    'Access-Control-Allow-Origin': '*',
     'Mate-Auth': accessToken,
-    token: sessionStorage.getItem('token')
+    token: sessionStorage.getItem('token') || ''
   }
 }
 
